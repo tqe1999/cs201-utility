@@ -21,6 +21,7 @@
 	        debug="on">        
 		 <include name="kanzi/*.java"/>
 		 <include name="kanzi/app/**"/>
+     <include name="kanzi/serializer/**"/>
 		 <include name="kanzi/bitstream/**"/>
 		 <include name="kanzi/entropy/**"/>
 		 <include name="kanzi/function/**"/>

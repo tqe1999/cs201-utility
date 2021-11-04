@@ -18,6 +18,7 @@ package kanzi.app;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -313,6 +314,16 @@ public class BlockDecompressor implements Runnable, Callable<Integer>
          printOut("Total decoding time: "+str, this.verbosity > 0);
          printOut("Total output size: "+read+" byte"+((read>1)?"s":""), this.verbosity > 0);
 	   }
+      
+      try (FileWriter fw = new FileWriter("./log/data.csv",true)){
+         long delta = (after - before) / 1000000L; // convert to ms
+         String outLine = String.format("DECOMPRESSION,,,,,%d\n", delta);
+         fw.append(outLine);
+         fw.flush();
+         fw.close();
+      } catch (Exception e) {
+         //TODO: handle exception
+      } 
 
       return res;
    }

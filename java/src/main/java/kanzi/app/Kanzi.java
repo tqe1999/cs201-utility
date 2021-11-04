@@ -22,17 +22,20 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+import kanzi.serializer.Log;
+import kanzi.serializer.Serializer;
+import kanzi.serializer.SerializerFactory;
 
 public class Kanzi
 {
    private static final String[] CMD_LINE_ARGS = new String[]
    {
-      "-c", "-d", "-i", "-o", "-b", "-t", "-e", "-j", "-v", "-l", "-s", "-x", "-f", "-h"
+      "-c", "-d", "-i", "-o", "-b", "-t", "-e", "-j", "-v", "-l", "-s", "-x", "-f", "-h", "-a"
    };
 
    //private static final int ARG_IDX_COMPRESS = 0;
@@ -47,6 +50,7 @@ public class Kanzi
    private static final int ARG_IDX_LEVEL = 9;
    // private static final int ARG_IDX_FROM = 10;
    //private static final int ARG_IDX_TO = 11;
+   private static final int ARG_IDX_SERIALIZER = 12;
 
    private static final String APP_HEADER = "Kanzi 1.9 (C) 2021,  Frederic Langlet";
 
@@ -68,6 +72,22 @@ public class Kanzi
 
       if (mode == 'c')
       {
+         System.out.println(map);
+         SerializerFactory serializerFactory = new SerializerFactory();
+         Serializer se;
+
+         if (map.containsKey("serializer")){
+            Log.startExperiment((String) map.get("serializer"), "compression");
+            try {
+               se = serializerFactory.getSerializer(map);
+               se.transpose();
+               map.replace("inputName", "output/serialized.txt");
+            } catch (NoSuchAlgorithmException e) {
+               System.err.println("Could not create the serializer: " + e.getMessage());
+               System.exit(-1);
+            }
+         }
+
          BlockCompressor bc = null;
 
          try
@@ -81,6 +101,8 @@ public class Kanzi
          }
 
          int code = bc.call();
+         Log.logMemoryUsage();
+         Log.endExperiment();
 
          try
          {
@@ -144,6 +166,7 @@ public class Kanzi
         String outputName = null;
         String codec = null;
         String transform = null;
+        String serializer = null;
         int from = -1;
         int to = -1;
         int tasks = 0;
@@ -164,6 +187,12 @@ public class Kanzi
            if (arg.equals("-v"))
            {
               ctx = ARG_IDX_VERBOSE;
+              continue;
+           }
+
+           if (arg.equals("-a"))
+           {
+              ctx = ARG_IDX_SERIALIZER;
               continue;
            }
 
@@ -358,6 +387,18 @@ public class Kanzi
                while ((transform.length()>0) && (transform.charAt(transform.length()-1) == '+'))
                   transform = transform.substring(0, transform.length()-1);
 
+               ctx = -1;
+               continue;
+           }
+
+           if ((arg.startsWith("--serializer=")) || (ctx == ARG_IDX_SERIALIZER))
+           {
+               String name = arg.startsWith("--serializer=") ? arg.substring(13).trim().toUpperCase() :
+               arg.toUpperCase();
+
+               if (serializer != null)
+                  System.err.println("Warning: ignoring duplicate serializer: " + name);
+               else serializer = name;
                ctx = -1;
                continue;
            }
@@ -585,6 +626,9 @@ public class Kanzi
 
         if (transform != null)
            map.put("transform", transform);
+
+        if (serializer != null)
+           map.put("serializer", serializer);
 
         if (checksum == true)
            map.put("checksum", checksum);

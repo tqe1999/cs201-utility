@@ -1,0 +1,9 @@
+-- HASHGRID, compression --
+Memory used: 1 MB
+Elapsed time: 5.38 seconds
+-- END --
+
+-- ARRAYLIST, compression --
+Memory used: 1 MB
+Elapsed time: 4.97 seconds
+-- END --

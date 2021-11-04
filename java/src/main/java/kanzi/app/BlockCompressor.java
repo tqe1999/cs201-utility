@@ -18,6 +18,7 @@ package kanzi.app;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -130,11 +131,6 @@ public class BlockCompressor implements Runnable, Callable<Integer>
       this.pool = Executors.newFixedThreadPool(this.jobs);
       this.listeners = new ArrayList<>(10);
 
-      if ((this.verbosity > 0) && (map.size() > 0))
-      {
-         for (String k : map.keySet())
-            printOut("Ignoring invalid option [" + k + "]", true); //this.verbosity>0
-      }
    }
 
 
@@ -712,6 +708,16 @@ public class BlockCompressor implements Runnable, Callable<Integer>
             Listener[] array = this.listeners.toArray(new Listener[this.listeners.size()]);
             notifyListeners(array, evt);
          }
+
+         try (FileWriter fw = new FileWriter("./log/data.csv",true)){
+            String trans = (String) this.ctx.get("transform");
+            String entropy = (String) this.ctx.get("codec");
+            int blockSize = (int) this.ctx.get("blockSize");
+            String outLine = String.format("%s,%s,%s,%d,%s,%d\n", trans, entropy, blockSize, read, this.cos.getWritten(),delta);
+            fw.append(outLine);
+            fw.flush();
+            fw.close();
+         } 
 
          return new FileCompressResult(0, read, this.cos.getWritten());
       }
