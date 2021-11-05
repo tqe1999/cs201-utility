@@ -1,2 +1,2 @@
 transform,entropy,block size,input size,output size,time
-
+BWT,HUFFMAN,1048576,124380583,47784642,6290

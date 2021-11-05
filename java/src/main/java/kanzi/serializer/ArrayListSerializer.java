@@ -125,4 +125,21 @@ public class ArrayListSerializer implements Serializer {
         }
         return businessNameList;
     }
+
+    public List<String> getBusinessWithId(String id) {
+        int idIndex = 0;
+        for (String key: keyList) {
+            if (key.equals("business_id"))
+                break;
+            idIndex++;
+        }
+
+        for (List<String> objectValues : objectValueList) {
+            String business_id = objectValues.get(idIndex);
+            if (business_id.equals(id))
+                return objectValues;
+        }
+
+        return null;
+    }
 }

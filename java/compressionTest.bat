@@ -1,4 +1,4 @@
-for /l %%x in (1,1,1) do (
+for /l %%x in (1,1,30) do (
     java -cp "target\classes;lib/*" kanzi.app.Kanzi -c -i data/dataset.json -o output/comp.knz -f -t BWT -b 1m -e Huffman -j 1
     java -cp "target\classes;lib/*" kanzi.app.Kanzi -d -i output/comp.knz -o output/decomp.json -f -j 1
     java -cp "target\classes;lib/*" kanzi.app.Kanzi -c -i data/dataset.json -o output/comp.knz -f -t BWT -b 2m -e Huffman -j 1

@@ -1,4 +1,185 @@
-Memory used: 1 MB
-Elapsed time: 1636047324.99 seconds
+-- ArrayList, Transpose --
+Memory used: 213056824 B
+Elapsed time: 3.82 seconds
+-- END --
+
+-- ArrayList, Get List of Businesses' Names --
+Memory used: 213409048 B
+Elapsed time: 0.10 seconds
+-- END --
+
+-- ArrayList, Get Businesses' Names with Specific Stars --
+Memory used: 213409640 B
+Elapsed time: 0.12 seconds
+-- END --
+
+-- ArrayList, Get Businesses With id --
+Memory used: 213409768 B
+Elapsed time: 0.08 seconds
+-- END --
+
+-- Tree, Transpose --
+Memory used: 213232160 B
+Elapsed time: 3.94 seconds
+-- END --
+
+-- Tree, Get List of Businesses' Names --
+Memory used: 213232160 B
+Elapsed time: 0.10 seconds
+-- END --
+
+-- Tree, Get Businesses' Names with Specific Stars --
+Memory used: 213232160 B
+Elapsed time: 0.07 seconds
+-- END --
+
+-- Tree, Get Businesses With id --
+Memory used: 213232160 B
+Elapsed time: 0.09 seconds
+-- END --
+
+-- HashMap Chaining, Transpose --
+Memory used: 209206072 B
+Elapsed time: 3.92 seconds
+-- END --
+
+-- HashMap Chaining, Get List of Businesses' Names --
+Memory used: 209206072 B
+Elapsed time: 0.07 seconds
+-- END --
+
+-- HashMap Chaining, Get Businesses' Names with Specific Stars --
+Memory used: 209206072 B
+Elapsed time: 0.07 seconds
+-- END --
+
+-- HashMap Chaining, Get specific business_id details --
+Memory used: 209206160 B
+Elapsed time: 0.06 seconds
+-- END --
+
+-- HashMap, Transpose --
+Memory used: 409828688 B
+Elapsed time: 4.39 seconds
+-- END --
+
+-- HashMap, Get List of Businesses' Names --
+Memory used: 409828688 B
+Elapsed time: 0.20 seconds
+-- END --
+
+-- HashMap, Get Businesses' Names with Specific Stars --
+Memory used: 409828688 B
+Elapsed time: 0.21 seconds
+-- END --
+
+-- HashMap, Get specific business_id details --
+Memory used: 409828688 B
+Elapsed time: 0.14 seconds
+-- END --
+
+-- HashMap Load factor 0.1, Transpose --
+Memory used: 426606072 B
+Elapsed time: 4.50 seconds
+-- END --
+
+-- HashMap Load factor 0.2, Transpose --
+Memory used: 414023312 B
+Elapsed time: 4.14 seconds
+-- END --
+
+-- HashMap Load factor 0.3, Transpose --
+Memory used: 414023464 B
+Elapsed time: 4.20 seconds
+-- END --
+
+-- HashMap Load factor 0.4, Transpose --
+Memory used: 411926464 B
+Elapsed time: 4.18 seconds
+-- END --
+
+-- HashMap Load factor 0.5, Transpose --
+Memory used: 411926616 B
+Elapsed time: 4.46 seconds
+-- END --
+
+-- HashMap Load factor 0.6, Transpose --
+Memory used: 411927008 B
+Elapsed time: 4.61 seconds
+-- END --
+
+-- HashMap Load factor 0.7, Transpose --
+Memory used: 409830008 B
+Elapsed time: 4.18 seconds
+-- END --
+
+-- HashMap Load factor 0.75, Transpose --
+Memory used: 409830160 B
+Elapsed time: 4.24 seconds
+-- END --
+
+-- HashMap Load factor 0.8, Transpose --
+Memory used: 409830312 B
+Elapsed time: 4.21 seconds
+-- END --
+
+-- HashMap Load factor 0.9, Transpose --
+Memory used: 409830464 B
+Elapsed time: 4.29 seconds
+-- END --
+
+-- HashMap Load factor 1.0, Transpose --
+Memory used: 409830616 B
+Elapsed time: 4.34 seconds
+-- END --
+
+-- HashGrid, Transpose --
+Memory used: 229289864 B
+Elapsed time: 4.04 seconds
+-- END --
+
+-- HashGrid, Get List of Businesses' Names --
+Memory used: 229289864 B
+Elapsed time: 0.08 seconds
+-- END --
+
+-- HashGrid, Get Businesses' Names with Specific Stars --
+Memory used: 229289864 B
+Elapsed time: 0.10 seconds
+-- END --
+
+-- HashGrid, Get specific business_id details --
+Memory used: 229289944 B
+Elapsed time: 0.08 seconds
+-- END --
+
+-- LRUHashGrid, Transpose --
+Memory used: 354717608 B
+Elapsed time: 4.85 seconds
+-- END --
+
+-- LRUHashGrid, Get List of Businesses' Names --
+Memory used: 354717608 B
+Elapsed time: 0.15 seconds
+-- END --
+
+-- LRUHashGrid, Get Businesses' Names with Specific Stars --
+Memory used: 354717608 B
+Elapsed time: 0.20 seconds
+-- END --
+
+-- LRUHashGrid, Get top 2 most frequent businesses --
+Memory used: 354717688 B
+Elapsed time: 0.17 seconds
+-- END --
+
+-- LRUHashGrid, Get specific business_id details --
+Memory used: 354717688 B
+Elapsed time: 0.15 seconds
+-- END --
+
+-- LRUHashGrid, Get top 2 most frequent businesses --
+Memory used: 354717688 B
+Elapsed time: 0.18 seconds
 -- END --
 

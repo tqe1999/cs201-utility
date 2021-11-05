@@ -65,7 +65,7 @@ public class Log {
 
         long memory = runtime.totalMemory() - runtime.freeMemory();
         try {
-            writer.write("Memory used: " + bytesToMegabytes(memory) + " MB");
+            writer.write("Memory used: " + memory + " B");
             writer.newLine();
             writer.flush();
         } catch (Exception e) {

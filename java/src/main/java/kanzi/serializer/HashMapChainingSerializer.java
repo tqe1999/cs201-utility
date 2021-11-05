@@ -101,4 +101,31 @@ public class HashMapChainingSerializer implements Serializer {
         }
         return businessNameList;
     }
+
+    public HashMap<String, String> getBusinessIdInfo(String businessId) {
+        HashMap<String, String> businessIdInfo = new HashMap<>();
+
+        ArrayList<String> businessIdList = objectValueMap.get("business_id");
+        int reference = -1;
+        for (int i = 0; i < businessIdList.size(); i++) {
+            if (businessIdList.get(i).equals(businessId)) {
+                reference = i;
+                break;
+            }
+        }
+
+        if (reference == -1) {
+            return null;
+        }
+
+
+        for (String key : objectValueMap.keySet()) { //this is done in O(1) as there are only fixed number of attributes
+            String value = objectValueMap.get(key).get(reference);
+            businessIdInfo.put(key, value);
+        }
+        return businessIdInfo;
+
+        
+
+    }
 }

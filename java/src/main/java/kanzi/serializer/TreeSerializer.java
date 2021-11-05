@@ -87,7 +87,7 @@ public class TreeSerializer implements Serializer {
             Iterable<Entry<Double, List<List<String>>>> entryList = treeMap.entrySet();
             for (Entry<Double, List<List<String>>> entry : entryList) {
                 Double numStars = entry.getKey();
-                writer.write(numStars + " stars:");
+                writer.write("\"" + numStars + " stars\": {[");
                 writer.newLine();
                 
                 List<List<String>> objectValueList = entry.getValue();
@@ -95,6 +95,8 @@ public class TreeSerializer implements Serializer {
                     writer.write("" + valueArray);
                     writer.newLine();
                 }
+                writer.write("]}");
+                writer.newLine();
             }
             
         } catch (Exception e) {
@@ -134,26 +136,28 @@ public class TreeSerializer implements Serializer {
         return businessNameList;
     }
 
-    public List<String> getBusinessNameListWithSpecificStars(Double numStars) {
-        List<String> businessNameList = new ArrayList<>();
+    public List<List<String>> getBusinessNameListWithSpecificStars(Double numStars) {
+        return treeMap.get(numStars);
+    }
 
-        int counterIndex = 0;
-        int nameIndex = 0;
-        int starsIndex  = 0;
+    public List<String> getBusinessWithId(String id) {
+        int idIndex = 0;
         for (String key: keyList) {
-            if (key.equals("name"))
-                nameIndex = counterIndex;
-            if (key.equals("stars"))
-                starsIndex = counterIndex;
-            counterIndex++;
+            if (key.equals("business_id"))
+                break;
+            idIndex++;
         }
 
-        List<List<String>> objectValueList = treeMap.get(numStars);
-        for (List<String> objectValues : objectValueList) {
-            String name = objectValues.get(nameIndex);
-            businessNameList.add(name);
+        Iterable<Entry<Double, List<List<String>>>> entryList = treeMap.entrySet();
+        for (Entry<Double, List<List<String>>> entry : entryList) {
+            List<List<String>> objectValueList = entry.getValue();
+            for (List<String> valueArray : objectValueList) {
+                String business_id = valueArray.get(idIndex);
+                if (business_id.equals(id))
+                    return valueArray;
+            }
         }
-        
-        return businessNameList;
+
+        return null;
     }
 }

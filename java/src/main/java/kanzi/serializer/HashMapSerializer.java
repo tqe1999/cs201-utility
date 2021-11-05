@@ -17,9 +17,6 @@ public class HashMapSerializer implements Serializer {
     private BufferedWriter writer;
     
     public HashMapSerializer(String inputFile, String outputFile) {
-        System.out.println("SERIALIZING...");
-        System.out.println("Input file: " + inputFile);
-        System.out.println("Serialized file: " + outputFile);
         keyList = new ArrayList<>();
         objectValueMap = new HashMap<>();
         reader = new JsonReader(inputFile);
@@ -111,5 +108,9 @@ public class HashMapSerializer implements Serializer {
         }
 
         return businessNameList;
+    }
+
+    public HashMap<String, String> getBusinessIdInfo(String businessId) {
+        return objectValueMap.get(businessId);
     }
 }
